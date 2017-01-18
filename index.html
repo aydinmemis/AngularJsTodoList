@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="app.js"></script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+#container{
+    width: 500px;
+    margin:100px auto ;
+}
+   .done{
+       color: #ccc;
+      text-decoration: line-through;
+   }
+    </style>
+
+</head>
+<body ng-app="App">
+<div id="container" ng-controller="myListCtrl">
+    <table class="table">
+        <caption> Araç Listesi</caption>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Araç Markası</th>
+            <th>Araç Üretim Tarihi</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="araba in arabalar">
+            <td><input type="checkbox" ng-model="araba.isDone"/></td>
+            <td><span ng-class="{'done':araba.isDone}">{{araba.marka}}</span> </td>
+            <td><span ng-class="{'done':araba.isDone}">{{araba.UretimTarihi}}</span></td>
+
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn btn-danger" ng-click="AracSil()">Seçili Olanları sil </button>
+<br/>
+    <br/>
+    <form ng-submit="YeniAracEkle()" name="frm" novalidate>
+        <input type="text" class="form-control" ng-model="aracMarka" required placeholder="Araç Markasını Yazınız..."/><br/>
+        <input type="text" class="form-control" ng-model="aracUretimTarihi" required placeholder="Araç Üretim Tarihini Yazınız..."/>
+        <br>
+        <button ng-disabled="frm.$invalid" class="btn btn-info">Araç Ekle</button>
+
+    </form>
+
+</div>
+</body>
+</html>
